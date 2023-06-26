@@ -57,7 +57,7 @@ void init(int& shmid, int& msqid, void*& sharedMemPtr)
 	}
 
 	/* TODO: Attach to the message queue */
-	msqid = msgget(key, 0666, | IPC_CREAT);
+	msqid = msgget(key, 0666 | IPC_CREAT);
 	if (msqid == -1)
 	{
 		perror("msqid");
@@ -77,7 +77,7 @@ void init(int& shmid, int& msqid, void*& sharedMemPtr)
 void cleanUp(const int& shmid, const int& msqid, void* sharedMemPtr)
 {
 	/* TODO: Detach from shared memory */
-	if (shmdt(sharedMemPtr)) == -1)
+	if (shmdt(sharedMemPtr) == -1)
 	{
 		perror("shmdt");
 		exit(EXIT_FAILURE);
